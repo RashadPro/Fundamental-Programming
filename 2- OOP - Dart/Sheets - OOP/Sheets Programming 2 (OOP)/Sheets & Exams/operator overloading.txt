@@ -1,0 +1,109 @@
+//Rashad... 
+#include <iostream> 
+using namespace std;
+class triangle
+{
+private:
+	int length;
+	double width;
+public:
+	triangle()
+	{
+		width = length = 0;
+	}
+	triangle(int l, double w)
+	{
+		length = l;
+		width = w;
+	}
+	void set_date()
+	{
+		cout << "Enter length :";
+		cin >> length;
+		cout << "Enter width : ";
+		cin >> width;
+	}
+	void show_date()
+	{
+		cout << "Length : " << length << endl
+			<< "Width  : " << width << endl;
+	}
+	triangle operator + (triangle t1) // return type object  
+	{
+		triangle sum;
+		sum.length = length + t1.length;
+		sum.width = width + t1.width;
+		return sum;
+	}
+	bool operator > (triangle t1) // return type always bool 
+	{
+		double x = length + width;
+		double y = t1.length + t1.width;
+		return (x > y);
+	}
+	void operator += (triangle t1) // return type always void 
+	{
+		length += t1.length;
+		width += t1.width;
+	}
+	void operator ++ (int)  //return type -> void or object ! , here void; 
+	{
+		length++;
+		width++;
+	}
+	triangle operator -- () // Here the return object , used constractor !; 
+	{
+		return triangle(--length, --width);
+	}
+};
+
+int main()
+{
+	triangle t1, t2, t3;
+	t1.set_date();
+	t2.set_date();
+	cout << "----Show_date t1 , t2-----" << endl;
+	cout << "T1 : " << endl;
+	t1.show_date();
+	cout << "T2 : " << endl;
+	t2.show_date();
+	cout << "================================" << endl;
+	cout << "--- Binary operators (+,-,*,/) --- " << endl;
+	cout << "-- sum '+' -> to object --" << endl;
+	t3 = t1 + t2;
+	t3.show_date();
+	cout << "------ Logical Operators ( < , > , == , != ) ---- " << endl;
+	if (t1 > t2)
+	{
+		cout << "t1 > t2 " << endl;
+		cout << "T1 : " << endl;
+		t1.show_date();
+		cout << "T2 : ";
+		t2.show_date();
+	}
+
+	else if (t2 > t1)
+	{
+		cout << "t2 > t1" << endl;
+		cout << "T1 : " << endl;
+		t1.show_date();
+		cout << "T2 : ";
+		t2.show_date();
+	}
+	else
+		cout << "same " << endl;
+
+	cout << "------ Assignment Operator(+=,-=,*= , /=) -------" << endl;
+	t1 += t2;
+	cout << "---Show t1 :" << endl;
+	t1.show_date();
+	cout << "====================================" << endl;
+	cout << " ----  Unary Operator  (++ , -- ) --- " << endl;
+	cout << "Show t1 > -- : " << endl;
+	--t1;
+	t1.show_date();
+	cout << "Show t1 > ++: " << endl;
+	t1++;
+	t1.show_date();
+	return 0;
+}

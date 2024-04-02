@@ -1,0 +1,48 @@
+#include <iostream>
+#include <fstream> //important
+using namespace std;
+//MOHAMMED ABUSARIE
+int main()
+{
+    //first method using fstream only
+
+    //create an object
+    fstream f1;
+    f1.open("test.txt",ios::out); //writing data to the file
+        f1<<"Eat"<<endl;
+        f1<<"Drink"<<endl;
+        f1<<"Pray"<<endl;
+        f1<<"Sleep"<<endl;
+    f1.close();                   //close the file
+
+    //read the file and display its content
+    f1.open("test.txt",ios::in);
+    string x;
+    while(!f1.eof())
+    {
+        getline(f1,x);
+        cout<<x<<endl;
+    }
+    f1.close();
+
+    //second method using ifstream and ofstream
+    //create an object
+    ofstream off;
+    off.open("play.txt");
+    off<<"game"<<endl;   //writing data to the file
+    off<<"over"<<endl;
+    off<<"win"<<endl;
+    off.close(); // close the file after finishing
+    //read file content
+    ifstream iff;
+    iff.open("play.txt");
+    string y;
+    while(!iff.eof())
+    {
+        getline(iff,y);
+        cout<<y<<endl;
+    }
+    iff.close();
+
+
+}
